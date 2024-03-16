@@ -66,10 +66,13 @@ class Rows {
 
   Rows(
       {this.id,
-        this.name,
-        this.description,
-        this.showDivisionReport,
-        this.isActive});
+      this.name,
+      this.description,
+      this.showDivisionReport,
+      this.isActive});
+
+  Rows.add(
+      {this.name, this.description, this.showDivisionReport, this.isActive});
 
   Rows.fromJson(Map<String, dynamic> json) {
     id = json['Id'];

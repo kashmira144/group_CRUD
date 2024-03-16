@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_crud/controller/group_type_controller.dart';
 import 'package:group_crud/ui/add_update_group_type_screen.dart';
-import 'package:group_crud/utils/vertical_title_subtitle_shimmer_widget.dart';
 
 class GroupTypeListingScreen extends StatelessWidget {
   final GroupTypeController controller = Get.put(GroupTypeController());
@@ -23,6 +22,18 @@ class GroupTypeListingScreen extends StatelessWidget {
               )
             : getGroupTypeListWidget(),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          controller.selectGroupType(-1);
+          Get.to(
+            () => AddUpdateGroupTypeScreen(),
+            binding: BindingsBuilder(() {
+              Get.put(GroupTypeController());
+            }),
+          );
+        },
+      ),
     );
   }
 
@@ -40,15 +51,13 @@ class GroupTypeListingScreen extends StatelessWidget {
             child: ListTile(
               onTap: () {
                 // Navigate to the next screen and pass the selected item data
-
-                controller.groupType.value = groupType;
+                controller.selectGroupType(index);
                 Get.to(
                   () => AddUpdateGroupTypeScreen(),
-                )?.then((_) {
-                  // Handle the update in list view after navigating back from the next screen
-                  // For simplicity, this example just re-fetches the data
-                  controller.fetchGroupTypes();
-                });
+                  binding: BindingsBuilder(() {
+                    Get.put(GroupTypeController());
+                  }),
+                );
               },
 
               title: Text(groupType.name),

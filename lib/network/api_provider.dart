@@ -18,9 +18,7 @@ class ApiProvider {
             StringConstants.HEADER_PARAM_APPLICATION_JSON,
       }).then((response) async {
         responseJson = response;
-        print('${StringConstants.BASE_URL}$url');
       }).catchError((onError) {
-        print("onError---${onError}");
         return onError;
       });
       return responseJson;
@@ -47,10 +45,8 @@ class ApiProvider {
               body: jsonEncode(body),
               headers: header)
           .then((response) async {
-        print("--Put ${StringConstants.BASE_URL}$url  $response ");
         responseJson = response;
       }).catchError((onError) {
-        print("--Put onERROR ${StringConstants.BASE_URL}$url $onError ");
         return onError;
       });
       return responseJson;
@@ -77,10 +73,8 @@ class ApiProvider {
               body: jsonEncode(body),
               headers: header)
           .then((response) async {
-        print("--POST ${StringConstants.BASE_URL}$url  ${response.body} ");
         responseJson = response;
       }).catchError((onError) {
-        print("--POST onERROR ${StringConstants.BASE_URL}$url $onError ");
         return Future.error(onError());
       });
       return responseJson;

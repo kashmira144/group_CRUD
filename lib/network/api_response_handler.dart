@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 
 class ApiResponseHandler {
   response(dataResponse, successResponse) {
-    print("Suc3esssuccessResponse--${dataResponse.statusCode}");
-
     if (dataResponse is http.Response) {
       switch (dataResponse.statusCode) {
         case NumberConstant.INT_TWO_HUNDRED:
